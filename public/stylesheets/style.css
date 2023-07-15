@@ -1,0 +1,31 @@
+* {
+  font-family: 'Rubik', sans-serif;
+}
+
+
+
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/* .btn-secondary, .btn, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #8064A2 !important;
+} */
+
+.btn {
+  background-color: rgb(81, 180, 192) !important;
+  color: white !important;
+  border: transparent !important;
+}
+
+.btn:hover {
+  background-color: rgb(225, 144, 55) !important;
+  color: white !important;
+  border: transparent !important;
+}
