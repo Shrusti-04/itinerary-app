@@ -6,8 +6,12 @@
 -->
 
 <%- include('../partials/header') %>
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div class="col-md-8 col-lg-6 mx-auto my-5">
 
-<table id="list">
+    <h2 class="display-5 font-weight-normal">Your Trips</h2>
+    <br>
+<!-- <table id="list">
   <thead>
     <tr>
       <th>Trip</th>
@@ -21,12 +25,43 @@
       <tr>
         <td><%= t.name %></td>
         <td><%= t.destination %></td>
-        <td><%= t.startDate %> - <%= t.endDate %></td>
+        <td><%= t.startDate.toLocaleDateString() %> - <%= t.endDate.toLocaleDateString() %></td>
         <td><a href="/trips/<%= t._id %>">OPEN</a></td>
       </tr>
       <% }); %>
     </tbody>
-  </table>
+  </table> -->
+      <% let sortedTrips = [...trips];
+        sortedTrips.sort((a, b) => {
+        return new Date(a.startDate) - new Date(b.startDate);
+      }); %>
+
+    <ul class="list-group">
+      <% sortedTrips.forEach(function(t) { %>
+        <a href="/trips/<%= t._id %>" class="text-decoration-none">
+          <li class ="list-group-item list-group-item-action <%= new Date(t.startDate) < new Date() ? 'list-group-item-danger' : 'list-group-item-light' %> col-sm-12 col-md-10 col-lg-8">
+            
+            <strong><%= t.name %></strong>
+            | 
+            <%= t.destination %>
+            |
+            <%= t.startDate.toLocaleDateString() %> - <%= t.endDate.toLocaleDateString() %> 
+
+            <form 
+            action="/trips/<%= t._id %>?_method=DELETE"
+            method="POST"
+            class="delete-form d-inline"
+            >
+            <button type="submit" class="btn-close" aria-label="Close" onclick="return confirm('Are you sure you want to delete this trip?');"></button>
+            </form>
+          </li>
+        </a>
+      <% }); %>
+    </ul>
+  </div>
+</div>
+
+
 
 
 <%- include('../partials/footer') %>

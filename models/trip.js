@@ -27,11 +27,24 @@ const activitySchema = new Schema({
 });
 
 const tripSchema = new Schema({
-  name: String,
-  destination: String,
-  startDate: Date,
-  endDate: Date,
+  name: { 
+    type: String,
+    required: true,
+  },
+  destination: { 
+    type: String,
+    required: true,
+  },
+  startDate: { 
+    type: Date,
+    required: true,
+  },
+  endDate:{ 
+    type: Date,
+    required: true,
+  },
   budget: Number,
+  currency: String,
   activities: [activitySchema],
   locations: [locationSchema],
   user: {

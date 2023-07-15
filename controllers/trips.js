@@ -5,10 +5,11 @@ module.exports = {
   new: newTrip,
   create,
   show,
+  delete: deleteTrip,
 };
 
 async function index(req, res) {
-  const trips = await Trip.find({});
+  const trips = await Trip.find({ user: req.user._id });
   res.render('trips/index', { title: 'My Trips', trips });
 }
 
@@ -41,5 +42,15 @@ async function create(req, res) {
   } catch (err) {
     console.log(err);
     res.render('/trips/new', { errorMsg: err.message });
+  }
+}
+
+async function deleteTrip(req, res) {
+  try {
+    await Trip.findByIdAndDelete(req.params.id);
+    res.redirect('/trips');
+  } catch (err) {
+    console.log(err);
+    res.redirect('/trips');
   }
 }
