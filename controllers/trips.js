@@ -8,6 +8,11 @@ module.exports = {
   delete: deleteTrip,
 };
 
+async function edit(req, res) {
+  const trip = await Trip.findById(req.params.id);
+  res.render('trips/:id', { title: 'Edit Trip', trip });
+}
+
 async function index(req, res) {
   const trips = await Trip.find({ user: req.user._id });
   res.render('trips/index', { title: 'My Trips', trips });

@@ -29,6 +29,33 @@
       </div>
     </form> 
     <!-- LISTING THE LOCATIONS -->
+
+    <% trip.locations.forEach(function(l) { %>
+      
+      <li class ="list-group-item list-group-item-action col-sm-12 col-md-10 col-lg-8 p-2">
+
+        <img class="rounded-circle float-start img-fluid" alt="avatar" src="<%= l.userAvatar %>" style="height:4vmin" referrerpolicy="no-referrer" >
+
+        <!-- <div class="float-start"> 
+          &nbsp;
+          <% let nameArr = l.userName.split(' ') %>
+          <% let firstName = nameArr[0] %>
+          <%= nameArr[0] %>
+        </div> -->
+        
+        <strong><%= l.location %></strong>
+  
+        <% if (user?._id.equals(l.user)) { %>
+          <form 
+          action="/locations/<%= l._id %>?_method=DELETE"
+        method="POST"
+        class="delete-form d-inline">  
+        <button type="submit" class="btn-close float-end" aria-label="Close"></button>
+      </form>
+        <% } %>
+       
+      </li>
+    <% }); %>
     
 
     <br>
@@ -62,19 +89,8 @@
         </div> -->
         
         <strong><%= a.activity %></strong>
-        <!-- | 
-        <%= a.location %>
-        |
-        <%= a.date %>  -->
-
-
-        
-       
-
-        
-
+  
         <% if (user?._id.equals(a.user)) { %>
-          
           <form 
           action="/activities/<%= a._id %>?_method=DELETE"
         method="POST"
@@ -84,13 +100,13 @@
         <% } %>
        
       </li>
-  <% }); %>
+    <% }); %>
 
     <br>
     <!-- ADDING OR UPDATING BUDGET -->
     <h2 class="display-7 font-weight-normal">Budget</h2>
     
-    <form id="new-trip" action="/trips" method="POST" autocomplete="off">
+    <form id="budget-form" action="/trips" method="POST" autocomplete="off">
       <div class="form-group row p-2">
         <div class="col-10 my-2 my-md-2 my-lg-1">
           <div class="input-group mb-3">
@@ -110,7 +126,7 @@
                 <option>SGD - $</option>
               </select>
             </div>
-            <input type="number" min="0" step="0.01" class="form-control" id="budgetInput" name="budget" placeholder="Enter your budget" required>
+            <input type="number" min="0" step="50.00" class="form-control" id="budgetInput" name="budget" placeholder="Enter your budget" required>
           </div>
         </div>
         <div class="col-2 my-2 my-md-2 my-lg-1">

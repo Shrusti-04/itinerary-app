@@ -12,6 +12,8 @@ router.get('/new', ensureLoggedIn, tripsCtrl.new);
 router.get('/:id', tripsCtrl.show);
 // POST /trips
 router.post('/', ensureLoggedIn, tripsCtrl.create);
+// EDIT /trips/:id/edit
+//router.get('/:id/edit', ensureLoggedIn, tripsCtrl.edit);
 // DELETE /trips/:id
 router.delete('/:id', ensureLoggedIn, tripsCtrl.delete);
 
