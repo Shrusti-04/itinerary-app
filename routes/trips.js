@@ -17,4 +17,5 @@ router.delete('/:id', ensureLoggedIn, tripsCtrl.delete);
 
 
 
+
 module.exports = router;

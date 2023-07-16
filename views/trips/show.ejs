@@ -16,39 +16,78 @@
     <br>
 
     <h2 class="display-7 font-weight-normal">Places to visit</h2>
-  
-    <form id="new-trip" action="/trips" method="POST" autocomplete="off">
+    <!-- ADDING NEW LOCATIONS -->
+    <form id="add-new-location" action="/trips/<%= trip._id %>/locations" method="POST" autocomplete="off">
       <div class="form-group row p-2">
 
         <div class="col-10 my-2 my-md-2 my-lg-1">
-          <input type="text" class="form-control" id="tripName" name="name" placeholder="Add a location">
+          <input type="text" class="form-control" id="location" name="location" placeholder="Add a location">
         </div>
         <div class="col-2 my-2 my-md-2 my-lg-1">
-          <button type="submit" class="btn btn-outline-custom">Add</button>
+          <button type="submit" class="btn btn-outline-custom float-end">Add</button>
         </div>
-
       </div>
     </form> 
+    <!-- LISTING THE LOCATIONS -->
+    
 
     <br>
 
     <h2 class="display-7 font-weight-normal">Activities</h2>
-
-    <form id="new-trip" action="/trips" method="POST" autocomplete="off">
+    <!-- ADDING NEW ACTIVITIES -->
+    <form id="add-new-activity" action="/trips/<%= trip._id %>/activities" method="POST" autocomplete="off">
       <div class="form-group row p-2">
 
         <div class="col-10 my-2 my-md-2 my-lg-1">
-          <input type="text" class="form-control" id="tripName" name="name" placeholder="Add an activity">
+          <input type="text" class="form-control" id="activity" name="activity" placeholder="Add an activity">
         </div>
         <div class="col-2 my-2 my-md-2 my-lg-1">
-          <button type="submit" class="btn btn-outline-custom">Add</button>
+          
+          <button type="submit" class="btn btn-outline-custom float-end">Add</button>
         </div>
-
       </div>
     </form> 
+    <!-- LISTING THE ACTIVITIES -->
+    <% trip.activities.forEach(function(a) { %>
+      
+      <li class ="list-group-item list-group-item-action col-sm-12 col-md-10 col-lg-8 p-2">
+
+        <img class="rounded-circle float-start img-fluid" alt="avatar" src="<%= a.userAvatar %>" style="height:4vmin" referrerpolicy="no-referrer" >
+
+        <!-- <div class="float-start"> 
+          &nbsp;
+          <% let nameArr = a.userName.split(' ') %>
+          <% let firstName = nameArr[0] %>
+          <%= nameArr[0] %>
+        </div> -->
+        
+        <strong><%= a.activity %></strong>
+        <!-- | 
+        <%= a.location %>
+        |
+        <%= a.date %>  -->
+
+
+        
+       
+
+        
+
+        <% if (user?._id.equals(a.user)) { %>
+          
+          <form 
+          action="/activities/<%= a._id %>?_method=DELETE"
+        method="POST"
+        class="delete-form d-inline">  
+        <button type="submit" class="btn-close float-end" aria-label="Close"></button>
+      </form>
+        <% } %>
+       
+      </li>
+  <% }); %>
 
     <br>
-
+    <!-- ADDING OR UPDATING BUDGET -->
     <h2 class="display-7 font-weight-normal">Budget</h2>
     
     <form id="new-trip" action="/trips" method="POST" autocomplete="off">
@@ -75,7 +114,7 @@
           </div>
         </div>
         <div class="col-2 my-2 my-md-2 my-lg-1">
-          <button type="submit" class="btn btn-primary">Add</button>
+          <button type="submit" class="btn btn-primary float-end">Add</button>
         </div>
       </div>
     </form>
@@ -84,6 +123,8 @@
 
 
   </div>
+  <button type="submit" class="btn btn-outline-custom w-100">Generate itinerary</button>
+
 </div>
 
 <%- include('../partials/footer') %>
