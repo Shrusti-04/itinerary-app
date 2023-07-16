@@ -11,26 +11,6 @@
 
     <h2 class="display-5 font-weight-normal">Your Trips</h2>
     <br>
-<!-- <table id="list">
-  <thead>
-    <tr>
-      <th>Trip</th>
-      <th>Destination</th>
-      <th>Date</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% trips.forEach(function(t) { %>
-      <tr>
-        <td><%= t.name %></td>
-        <td><%= t.destination %></td>
-        <td><%= t.startDate.toLocaleDateString() %> - <%= t.endDate.toLocaleDateString() %></td>
-        <td><a href="/trips/<%= t._id %>">OPEN</a></td>
-      </tr>
-      <% }); %>
-    </tbody>
-  </table> -->
       <% let sortedTrips = [...trips];
         sortedTrips.sort((a, b) => {
         return new Date(a.startDate) - new Date(b.startDate);
@@ -40,31 +20,34 @@
       <% sortedTrips.forEach(function(t) { %>
         <a href="/trips/<%= t._id %>" class="text-decoration-none">
           <li class ="list-group-item list-group-item-action <%= new Date(t.startDate) < new Date() ? 'list-group-item-danger' : 'list-group-item-light' %> col-sm-12 col-md-10 col-lg-8">
-            
-            <strong><%= t.name %></strong>
-            | 
-            <%= t.destination %>
-            |
-            <%= t.startDate.toLocaleDateString() %> - <%= t.endDate.toLocaleDateString() %> 
-
-            <form 
-            action="/trips/<%= t._id %>?_method=DELETE"
-            method="POST"
-            class="delete-form d-inline"
-            >
-            <button type="submit" class="btn-close" aria-label="Close" onclick="return confirm('Are you sure you want to delete this trip?');"></button>
-            </form>
+            <div class="row">
+              <div class="col-sm-6 ">
+                <strong><%= t.name %></strong>
+                <br/>
+                <%= t.destination %>
+              </div>
+              <div class="col-sm-5">
+                <%= t.startDate.toLocaleDateString() %> - <%= t.endDate.toLocaleDateString() %> 
+                <!-- <br/> -->
+                <!-- <img class="rounded-circle float-start img-fluid" alt="avatar" src="<%= t._id.userAvatar %>" style="height:2vmin" referrerpolicy="no-referrer" > -->
+              </div>
+              <div class="col-sm-1 text-end">
+                <form 
+                action="/trips/<%= t._id %>?_method=DELETE"
+                method="POST"
+                class="delete-form"
+                >
+                <button type="submit" class="btn-close" aria-label="Close" onclick="return confirm('Are you sure you want to delete this trip?');"></button>
+                </form>
+              </div>
+            </div>
           </li>
         </a>
       <% }); %>
     </ul>
-
-    
   </div>
   <a class="btn btn-outline-secondary" href="/trips/new">New trip</a>
 </div>
-
-
 
 
 <%- include('../partials/footer') %>

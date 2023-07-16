@@ -6,11 +6,22 @@ module.exports = {
   create,
   show,
   delete: deleteTrip,
+  updateBudget,
 };
 
-async function edit(req, res) {
-  const trip = await Trip.findById(req.params.id);
-  res.render('trips/:id', { title: 'Edit Trip', trip });
+async function updateBudget(req, res) {
+  try {
+    const trip = await Trip.findById(req.params.id);
+    if (req.user._id.equals(trip.user)) {
+      trip.budget = req.body.budget;
+      trip.currency = req.body.currency;
+      await trip.save();
+    }
+    res.redirect(`/trips/${trip._id}`);
+  } catch (err) {
+    console.log(err);
+    res.redirect('/trips');
+  }
 }
 
 async function index(req, res) {

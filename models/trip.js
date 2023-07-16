@@ -43,8 +43,14 @@ const tripSchema = new Schema({
     type: Date,
     required: true,
   },
-  budget: Number,
-  currency: String,
+  budget: {
+    type: Number,
+    default: 0,
+  },
+  currency: { 
+    type: String,
+    default: 'USD - $',
+  },
   activities: [activitySchema],
   locations: [locationSchema],
   user: {

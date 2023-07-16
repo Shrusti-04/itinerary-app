@@ -106,12 +106,12 @@
     <!-- ADDING OR UPDATING BUDGET -->
     <h2 class="display-7 font-weight-normal">Budget</h2>
     
-    <form id="budget-form" action="/trips" method="POST" autocomplete="off">
+    <form id="budget-form" action="/trips/<%= trip._id %>/budget?_method=PUT" method="POST" autocomplete="off">
       <div class="form-group row p-2">
         <div class="col-10 my-2 my-md-2 my-lg-1">
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <select class="form-control" id="currencySelect" name="currency">
+              <select class="form-control" id="currencySelect" name="currency" value="<%= trip.currency %>">
                 <option selected>USD - $</option>
                 <option>EUR - €</option>
                 <option>JPY - ¥</option>
@@ -126,14 +126,17 @@
                 <option>SGD - $</option>
               </select>
             </div>
-            <input type="number" min="0" step="50.00" class="form-control" id="budgetInput" name="budget" placeholder="Enter your budget" required>
+            <input type="number" min="0" step="50.00" class="form-control" id="budgetInput" name="budget" placeholder="Enter your budget" value="<%= trip.budget %>" required>
           </div>
         </div>
         <div class="col-2 my-2 my-md-2 my-lg-1">
-          <button type="submit" class="btn btn-primary float-end">Add</button>
+          <button type="submit" class="btn btn-primary float-end"><%= trip.budget ? "Update" : "Add" %></button>
         </div>
       </div>
+      <h4 class="font-weight-normal"><%= trip.currency.split(' - ')[1] %><%= trip.budget %></h4>
+      
     </form>
+    
     
     
 
