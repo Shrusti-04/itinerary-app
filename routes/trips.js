@@ -15,6 +15,10 @@ router.post('/', ensureLoggedIn, tripsCtrl.create);
 
 // PUT /trips/:id/date
 router.put('/:id/date', ensureLoggedIn, tripsCtrl.updateDate);
+// PUT /trips/:id/destination
+router.put('/:id/destination', ensureLoggedIn, tripsCtrl.updateDestination);
+// PUT /trips/:id/name
+router.put('/:id/name', ensureLoggedIn, tripsCtrl.updateName);
 
 
 // PUT /trips/:id/budget

@@ -10,11 +10,20 @@
 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
   <div class="col-md-8 col-lg-6 mx-auto my-5">
-    <h2 class="display-5 font-weight-normal"><%= trip.name %></h2>
-    <!-- <p class="font-weight-normal"><%= trip.destination %> | <%= trip.startDate.toLocaleDateString() %> - <%= trip.endDate.toLocaleDateString() %></p> -->
-    <h5 class="font-weight-normal">
-      <%= trip.destination %> <br>
-    </h5>
+
+    
+    <form action="/trips/<%= trip._id %>/name?_method=PUT" method="POST" autocomplete="off">
+      <h2 class="display-5 font-weight-normal">
+        <input type="text" class="form-control-plaintext text-center" id="tripName" name="name" value="<%= trip.name %>" onblur="this.form.submit()" onfocus="this.classList.add('bg-white')" onblur="this.classList.remove('bg-white')" />
+        
+      </h2>
+    </form>
+    <form action="/trips/<%= trip._id %>/destination?_method=PUT" method="POST" autocomplete="off">
+      <h5 class="font-weight-normal">
+        <input type="text" class="form-control-plaintext text-center" id="tripDestination" name="destination" value="<%= trip.destination %>" onblur="this.form.submit()" onfocus="this.classList.add('bg-white')" onblur="this.classList.remove('bg-white')" />
+      </h5>
+    </form>
+    
     <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 my-3">
       <input type="text" id="daterange" class="date-picker form-control text-center" readonly value="<%= trip.startDate %> - <%= trip.endDate %>">
       <input type="hidden" id="tripId" value="<%= trip._id %>">
@@ -55,11 +64,11 @@
   
         <% if (user?._id.equals(l.user)) { %>
           <form 
-          action="/locations/<%= l._id %>?_method=DELETE"
-        method="POST"
-        class="delete-form d-inline">  
-        <button type="submit" class="btn-close float-end" aria-label="Close"></button>
-      </form>
+            action="/locations/<%= l._id %>?_method=DELETE"
+            method="POST"
+            class="delete-form d-inline">  
+            <button type="submit" class="btn-close float-end" aria-label="Close"></button>
+          </form>
         <% } %>
        
       </li>
@@ -150,7 +159,10 @@
 
 
   </div>
-  <button type="submit" class="btn btn-outline-custom w-100">Generate itinerary</button>
+
+  <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3">
+    <button type="submit" class="btn btn-outline-custom w-100">Generate itinerary</button>
+  </div>
 
 </div>
 
