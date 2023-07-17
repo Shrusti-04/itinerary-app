@@ -18,7 +18,7 @@ async function deleteActivity(req, res) {
 
 async function create(req, res) {
   const trip = await Trip.findById(req.params.id); //finds the trip by the id in the url
-  console.log(`Activities create, trip = ${trip}`);
+
 
   req.body.user = req.user._id;
   req.body.userName = req.user.name;

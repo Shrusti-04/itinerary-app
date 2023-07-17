@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const itinerarySchema = new Schema({
+  itinerary: {
+    type: Array,
+  }
+});
+
 const locationSchema = new Schema({
   location: String,
   date: Date, //optional
@@ -53,6 +59,12 @@ const tripSchema = new Schema({
   },
   activities: [activitySchema],
   locations: [locationSchema],
+  itinerary: {
+    type: [itinerarySchema],
+    default: [{
+      itinerary: 'You have no itinerary yet.',
+    }]
+  },
   user: {
     type: Schema.Types.ObjectId,
     ref : 'User',

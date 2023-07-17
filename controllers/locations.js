@@ -23,7 +23,7 @@ async function create(req, res) {
   req.body.user = req.user._id;
   req.body.userName = req.user.name;
   req.body.userAvatar = req.user.avatar; //adds the user's name and avatar to the req.body
-  console.log("Request body:", req.body);
+  //console.log("Request body:", req.body);
 
   trip.locations.push(req.body); //pushes the req.body into the locations array
 
