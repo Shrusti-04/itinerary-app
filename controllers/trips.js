@@ -7,6 +7,7 @@ module.exports = {
   show,
   delete: deleteTrip,
   updateBudget,
+  updateDate
 };
 
 async function updateBudget(req, res) {
@@ -23,6 +24,22 @@ async function updateBudget(req, res) {
     res.redirect('/trips');
   }
 }
+
+async function updateDate(req, res) {
+  try {
+    const trip = await Trip.findById(req.params.id);
+    if (req.user._id.equals(trip.user)) {
+      trip.startDate = req.body.startDate;
+      trip.endDate = req.body.endDate;
+      await trip.save();
+    }
+    res.redirect(`/trips/${trip._id}`);
+  } catch (err) {
+    console.log(err);
+    res.redirect('/trips');
+  }
+}
+
 
 async function index(req, res) {
   const trips = await Trip.find({ user: req.user._id });

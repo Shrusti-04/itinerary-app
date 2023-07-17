@@ -12,6 +12,11 @@ router.get('/new', ensureLoggedIn, tripsCtrl.new);
 router.get('/:id', tripsCtrl.show);
 // POST /trips
 router.post('/', ensureLoggedIn, tripsCtrl.create);
+
+// PUT /trips/:id/date
+router.put('/:id/date', ensureLoggedIn, tripsCtrl.updateDate);
+
+
 // PUT /trips/:id/budget
 router.put('/:id/budget', ensureLoggedIn, tripsCtrl.updateBudget);
 // DELETE /trips/:id

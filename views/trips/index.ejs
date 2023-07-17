@@ -19,7 +19,7 @@
     <ul class="list-group">
       <% sortedTrips.forEach(function(t) { %>
         <a href="/trips/<%= t._id %>" class="text-decoration-none">
-          <li class ="list-group-item list-group-item-action <%= new Date(t.startDate) < new Date() ? 'list-group-item-danger' : 'list-group-item-light' %> col-sm-12 col-md-10 col-lg-8">
+          <li class ="list-group-item list-group-item-action <%= new Date(t.startDate) < new Date() ? 'list-group-item-danger' : 'list-group-item-light' %> col-sm-12 col-md-10 col-lg-8 mb-1">
             <div class="row">
               <div class="col-sm-6 ">
                 <strong><%= t.name %></strong>
