@@ -78,9 +78,9 @@ async function updateName(req, res) {
 }
 
 async function index(req, res) {
-  console.log(req);
+  //console.log(req);
   const trips = await Trip.find({ user: req.user._id });
-  console.log(trips);
+  //console.log(trips);
   res.render('trips/index', { title: 'My Trips', trips });
 }
 

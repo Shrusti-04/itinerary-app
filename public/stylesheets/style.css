@@ -33,3 +33,7 @@ a {
   height: 50px!important;
   border-radius: 50%!important;
 }
+
+.nav-link.dropdown-toggle::after {
+  display: none;
+}

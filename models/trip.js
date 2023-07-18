@@ -7,6 +7,12 @@ const itinerarySchema = new Schema({
   }
 });
 
+const collaboratorSchema = new Schema({
+  collaborator: String,
+  userName: String,
+  userAvatar: String,
+});
+
 const locationSchema = new Schema({
   location: String,
   date: Date, //optional
@@ -71,6 +77,7 @@ const tripSchema = new Schema({
     ref : 'User',
     required: true,
   },
+  collaborators: [collaboratorSchema],
 }, {
     timestamps: true
   });

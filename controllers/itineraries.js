@@ -33,7 +33,7 @@ async function fetchData(prompt) {
     }),
   })
   const data = await response.json()
-  console.log(data);
+  //console.log(data);
   return data.choices[0].text;
 }
 
@@ -42,11 +42,11 @@ async function create(req, res) {
 
   let tripPrompt = `Give me a detailed daily itinerary in one string, in a bullet point list, where each day of ${trip.duration} is a bullet (e.g. "Day 1: "), for a ${trip.name} vacation to ${trip.destination} from ${trip.startDate} until ${trip.endDate}, including the actitivities ${trip.activities} and visting the locations ${trip.locations} within their budget of ${trip.currency} ${trip.budget}, suggest good local food, drink, culture and other things that are fun in that area. Assume that the final day they will be leaving.`;
 
-  req.body.itinerary = await fetchData(tripPrompt);  // await the result of fetchData()
-  //let itineraryOutput = document.getElementById('itineraryOutput');
-  //itineraryOutput.innerHTML = await fetchData(tripPrompt);
+  req.session.loadingItinerary = true;
 
-  console.log(trip.itinerary);
+  req.body.itinerary = await fetchData(tripPrompt);  // await the result of fetchData()
+
+  //console.log(trip.itinerary);
   trip.itinerary.push(req.body); // Add AI output into the itinerary array
 
   try {
@@ -55,7 +55,7 @@ async function create(req, res) {
     console.log(err);
   }
 
-
+  req.session.loadingItinerary = false;  // end loading
 
   res.redirect(`/trips/${trip._id}`);  //redirects to the trip's show page
 }
