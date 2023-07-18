@@ -49,6 +49,7 @@ const tripSchema = new Schema({
     type: Date,
     required: true,
   },
+  duration: Number,
   budget: {
     type: Number,
     default: 0,

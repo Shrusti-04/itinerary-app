@@ -1,4 +1,5 @@
-const OPENAI_API_KEY = "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";
+
+const token = process.env.OPENAI_API_KEY;
 
 const Trip = require('../models/trip');
 
@@ -22,7 +23,7 @@ async function fetchData(prompt) {
   const response = await fetch("https://api.openai.com/v1/completions", {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${OPENAI_API_KEY}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -39,7 +40,7 @@ async function fetchData(prompt) {
 async function create(req, res) {
   const trip = await Trip.findById(req.params.id); //finds the trip by the id in the url
 
-  let tripPrompt = `Give me a detailed daily itinerary in one string, in a bullet point list, where each day is a bullet (e.g. "Day 1: "), for a vacation to ${trip.location} from ${trip.startDate} until ${trip.endDate}, including the actitivities ${trip.activities} and visting the locations ${trip.locations} within their budget of ${trip.currency} ${trip.budget}, suggest good restaurants and other things that are fun in that area.`;
+  let tripPrompt = `Give me a detailed daily itinerary in one string, in a bullet point list, where each day of ${trip.duration} is a bullet (e.g. "Day 1: "), for a ${trip.name} vacation to ${trip.destination} from ${trip.startDate} until ${trip.endDate}, including the actitivities ${trip.activities} and visting the locations ${trip.locations} within their budget of ${trip.currency} ${trip.budget}, suggest good local food, drink, culture and other things that are fun in that area. Assume that the final day they will be leaving.`;
 
   req.body.itinerary = await fetchData(tripPrompt);  // await the result of fetchData()
   //let itineraryOutput = document.getElementById('itineraryOutput');

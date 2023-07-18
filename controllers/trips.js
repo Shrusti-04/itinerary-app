@@ -33,6 +33,13 @@ async function updateDate(req, res) {
     if (req.user._id.equals(trip.user)) {
       trip.startDate = req.body.startDate;
       trip.endDate = req.body.endDate;
+
+      let start = new Date(req.body.startDate);
+      let end = new Date(req.body.endDate);
+      let durationTime = Math.abs(end - start);
+      trip.duration = Math.ceil(durationTime / (1000 * 60 * 60 * 24)) + 1; 
+
+
       await trip.save();
     }
     res.redirect(`/trips/${trip._id}`);
@@ -71,7 +78,9 @@ async function updateName(req, res) {
 }
 
 async function index(req, res) {
+  console.log(req);
   const trips = await Trip.find({ user: req.user._id });
+  console.log(trips);
   res.render('trips/index', { title: 'My Trips', trips });
 }
 
@@ -97,6 +106,11 @@ async function create(req, res) {
   }
 
   req.body.user = req.user._id;
+  let start = new Date(req.body.startDate);
+  let end = new Date(req.body.endDate);
+  let durationTime = Math.abs(end - start);
+  req.body.duration = Math.ceil(durationTime / (1000 * 60 * 60 * 24)) + 1; 
+
 
   try {
     const trip = await Trip.create(req.body);

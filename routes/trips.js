@@ -5,11 +5,11 @@ const tripsCtrl = require('../controllers/trips');
 const ensureLoggedIn = require('../config/ensureLoggedIn');
 
 // GET /trips
-router.get('/', tripsCtrl.index);
+router.get('/', ensureLoggedIn, tripsCtrl.index);
 // GET /trips/new
 router.get('/new', ensureLoggedIn, tripsCtrl.new);
 // GET /trips/:id
-router.get('/:id', tripsCtrl.show);
+router.get('/:id', ensureLoggedIn, tripsCtrl.show);
 // POST /trips
 router.post('/', ensureLoggedIn, tripsCtrl.create);
 
