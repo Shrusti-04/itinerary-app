@@ -17,7 +17,7 @@ async function create(req, res) {
     if (!collabUser) {
       console.log(`No user found with email: ${req.body.email}`);
       // redirect to the previous page or the trip's page without adding a collaborator
-      return res.redirect(`/trips/${trip._id}`);
+      return res.redirect(`/trips/${trip._id}?email=${req.body.email}`);
     }
 
     const collaborator = {

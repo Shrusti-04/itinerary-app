@@ -31,14 +31,15 @@ async function updateDate(req, res) {
   try {
     const trip = await Trip.findById(req.params.id);
     if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
-      trip.startDate = req.body.startDate;
-      trip.endDate = req.body.endDate;
+      // Append the 'T00:00' before assigning the values to the trip
+      req.body.startDate += 'T00:00';
+      req.body.endDate += 'T00:00';
 
-      let start = new Date(req.body.startDate);
-      let end = new Date(req.body.endDate);
-      let durationTime = Math.abs(end - start);
+      trip.startDate = new Date(req.body.startDate);
+      trip.endDate = new Date(req.body.endDate);
+
+      let durationTime = Math.abs(trip.endDate - trip.startDate);
       trip.duration = Math.ceil(durationTime / (1000 * 60 * 60 * 24)) + 1; 
-
 
       await trip.save();
     }
@@ -48,6 +49,7 @@ async function updateDate(req, res) {
     res.redirect('/trips');
   }
 }
+
 
 async function updateDestination(req, res) {
   try {
@@ -87,6 +89,8 @@ async function index(req, res) {
 
 async function show(req, res) {
   try {
+    console.log(req.query);
+    console.log(req.query.email);
     const trip = await Trip.findById(req.params.id);
     if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
       res.render('trips/show', { title: `${trip.name}`, trip });
@@ -119,6 +123,9 @@ async function create(req, res) {
   let durationTime = Math.abs(end - start);
   req.body.duration = Math.ceil(durationTime / (1000 * 60 * 60 * 24)) + 1; 
 
+  //Fixing the time issue:
+  req.body.startDate += 'T00:00';
+  req.body.endDate += 'T00:00';
 
   try {
     const trip = await Trip.create(req.body);
