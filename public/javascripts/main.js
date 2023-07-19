@@ -2,6 +2,8 @@ document.getElementById('itinerary-form').addEventListener('submit', function() 
   document.getElementById('spinner').style.display = 'block';
 });
 
+// date picker
+
 document.addEventListener("DOMContentLoaded", function() {
   var tripId = document.getElementById('tripId').value;
   var input = document.getElementById('daterange');

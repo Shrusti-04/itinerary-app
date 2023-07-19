@@ -89,8 +89,8 @@ async function index(req, res) {
 
 async function show(req, res) {
   try {
-    console.log(req.query);
-    console.log(req.query.email);
+    //console.log(req.query);
+    console.log(req.query.email); //ACCESSING THE EMAIL ADDRESS OF AN INVALID FELLOW TRAVELLER
     const trip = await Trip.findById(req.params.id);
     if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
       res.render('trips/show', { title: `${trip.name}`, trip });
