@@ -78,6 +78,7 @@ const tripSchema = new Schema({
     required: true,
   },
   collaborators: [collaboratorSchema],
+  userAvatar: String,
 }, {
     timestamps: true
   });

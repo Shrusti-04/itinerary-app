@@ -15,7 +15,7 @@ module.exports = {
 async function updateBudget(req, res) {
   try {
     const trip = await Trip.findById(req.params.id);
-    if (req.user._id.equals(trip.user)) {
+    if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
       trip.budget = req.body.budget;
       trip.currency = req.body.currency;
       await trip.save();
@@ -30,7 +30,7 @@ async function updateBudget(req, res) {
 async function updateDate(req, res) {
   try {
     const trip = await Trip.findById(req.params.id);
-    if (req.user._id.equals(trip.user)) {
+    if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
       trip.startDate = req.body.startDate;
       trip.endDate = req.body.endDate;
 
@@ -52,7 +52,7 @@ async function updateDate(req, res) {
 async function updateDestination(req, res) {
   try {
     const trip = await Trip.findById(req.params.id);
-    if (req.user._id.equals(trip.user)) {
+    if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
       trip.destination = req.body.destination;
       await trip.save();
     }
@@ -66,7 +66,7 @@ async function updateDestination(req, res) {
 async function updateName(req, res) {
   try {
     const trip = await Trip.findById(req.params.id);
-    if (req.user._id.equals(trip.user)) {
+    if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
       trip.name = req.body.name;
       await trip.save();
     }
@@ -78,21 +78,28 @@ async function updateName(req, res) {
 }
 
 async function index(req, res) {
-  //console.log(req);
   const trips = await Trip.find({ user: req.user._id });
-  //console.log(trips);
-  res.render('trips/index', { title: 'My Trips', trips });
+  const collabTrips = await Trip.find({ 'collaborators.collaborator': req.user._id.toString() });
+  
+  res.render('trips/index', { title: 'My Trips', trips, collabTrips });
 }
+
 
 async function show(req, res) {
   try {
-  const trip = await Trip.findById(req.params.id);
-  res.render('trips/show', { title: `${trip.name}`, trip });
+    const trip = await Trip.findById(req.params.id);
+    if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
+      res.render('trips/show', { title: `${trip.name}`, trip });
+    } else {
+      req.flash('error', 'You do not have permission to view this trip');
+      res.redirect(`/trips`);
+    }
   } catch (err) {
     console.log(err);
     res.redirect('/trips');
   }
 }
+
 
 
 function newTrip(req, res) {
@@ -105,6 +112,7 @@ async function create(req, res) {
     if (req.body[key] === '') delete req.body[key];
   }
 
+  req.body.userAvatar = req.user.avatar;
   req.body.user = req.user._id;
   let start = new Date(req.body.startDate);
   let end = new Date(req.body.endDate);

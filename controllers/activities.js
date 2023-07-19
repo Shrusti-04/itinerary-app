@@ -25,7 +25,7 @@ async function create(req, res) {
   req.body.userAvatar = req.user.avatar; //adds the user's name and avatar to the req.body
 
   trip.activities.push(req.body); //pushes the req.body into the activities array
-
+  
   try {
     await trip.save(); //saves the trip
   } catch (err) {

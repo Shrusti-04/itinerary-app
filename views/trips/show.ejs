@@ -9,7 +9,9 @@
 
 
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
-  <div class="col-md-8 col-lg-6 mx-auto my-5">
+  <img src="<%= trip.userAvatar %>" alt="Avatar" width="55" height="55" class="d-inline-block align-text-top rounded-circle border border-success">
+
+  <div class="col-md-8 col-lg-6 mx-auto mt-2 mb-4">
 
     <form action="/trips/<%= trip._id %>/name?_method=PUT" method="POST" autocomplete="off">
       <h2 class="display-5 font-weight-normal">
@@ -30,27 +32,30 @@
       <input type="hidden" id="tripId" value="<%= trip._id %>">
     </div>
     
-    <h2 class="display-7 font-weight-normal mb-2">Members</h2>
+    <h2 class="display-7 font-weight-normal mb-2">Fellow travellers</h2>
+
     <% trip.collaborators.forEach(function(c) { %>
       <img src="<%= c.userAvatar %>" alt="Avatar" width="35" height="35" class="d-inline-block align-text-top rounded-circle">
     <% }); %>
     
-
-  <form id="add-new-collaborator" action="/trips/<%= trip._id %>/collaborators" method="POST" autocomplete="off">
-    <div class="form-group row p-2">
-
-      <div class="col-10 my-2 my-md-2 my-lg-1">
-        <input type="text" class="form-control" id="collaborator" name="email" placeholder="Add member's email address">
-      </div>
-      <div class="col-2 my-2 my-md-2 my-lg-1">
-        
-        <button type="submit" class="btn btn-outline-custom float-end">Add</button>
-      </div>
-    </div>
-  </form> 
+    <% if (user?._id.equals(trip.user._id)) { %>
+      <form id="add-new-collaborator" action="/trips/<%= trip._id %>/collaborators" method="POST" autocomplete="off">
+        <div class="form-group row p-2">
+    
+          <div class="col-10 mt-2 my-md-2 my-lg-1">
+            <input type="text" class="form-control" id="collaborator" name="email" placeholder="Add your companion's email address">
+          </div>
+          <div class="col-2 my-2 my-md-2 my-lg-1">
+            
+            <button type="submit" class="btn btn-outline-custom float-end">Add</button>
+          </div>
+        </div>
+      </form> 
+    <% } %>
+    
 
   <br>
-    <h2 class="display-7 font-weight-normal">Places to visit</h2>
+    <h2 class="display-7 font-weight-normal mt-4">Places to visit</h2>
 
     <!-- ADDING NEW LOCATIONS -->
     <form id="add-new-location" action="/trips/<%= trip._id %>/locations" method="POST" autocomplete="off">
@@ -168,9 +173,7 @@
 
   </div>
 
-  <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3">
-    <!-- <button type="submit" class="btn btn-outline-custom w-100" onclick="displayData()">Generate itinerary</button> -->
-  
+  <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3">  
 
     <form id="itinerary-form" action="/trips/<%= trip._id %>/itineraries" method="POST" autocomplete="off">
       <div class="form-group row p-2">
@@ -206,11 +209,11 @@
     <% array.shift(); %>
     
     <% array.forEach(function(i) { %>
-      <% let day = i.split(': ') %>
+      <% let day = i.split(':') %>
 
-      <h5><%= day[0] %></h5>
+      <h5><%= day[0].trim() %></h5>
       <li class ="list-group-item col-12 list-group-item-light mb-3">
-      <%= day[1] %>
+      <%= day[1].trim() %>
       </li>
 
     <% }); %>
