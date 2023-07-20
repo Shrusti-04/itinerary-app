@@ -36,7 +36,7 @@ Itinera is a travel itinerary generator that allows users to build their ideal v
 
 They can set their trip name, destination, dates and budget, and then collaborate with friends to decide the locations and activites they want to hit. Once they're happy with their trip they hit 'Generate itinerary' and they're presented with a full day-by-day itinerary, using their input plus other attractions, restaurants, cultural landmarks, travel suggestions etc.
 
-Example:
+**Example:**
 
 ![Itinerary being generated](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/slow.gif)
 
@@ -54,8 +54,9 @@ For this project we were tasked to build a fullstack application using these too
 - ![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
 - ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 - ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-- ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
 
 
 
@@ -73,21 +74,50 @@ For this project we were tasked to build a fullstack application using these too
 
 ## Project Brief
 
-- Bullets of the project brief
+- Have at least 2 data entities in addition to the User Model - one entity that represents the main functional idea for your app and another with a One:Many or Many:Many relationship with that main entity.
+- Use OAuth authentication.
+- Implement basic authorization that restricts access to features that need a logged in user in order to work
+- Have full-CRUD data operations somewhere within the app's features.
+- Have a consistent and polished user interface.
+- Be deployed online via Heroku
 
 ## Planning
 
-Aim:
+**Aim:**
 
-- Add aim here
+To build a fullstack web application using JS, Express, Node, MongoDB and Mongoose. The app will be based around travel.
 
-ERD:
+**Landing Page:**
+
+Users can read about what the app does and there’s a button to ‘Plan Trip’.
+
+- **Trip Creator**
+Users can create a new trip by adding to a form:
+
+  - A location
+  - A start and end date
+  - Other users they'd like to plan with (optional).
+  - When they hit the ‘Create Trip’ button they are prompted to sign in.
+
+- **Oauth/Login Modal**
+If a logged out user hits create trip they’re prompted to sign/up or login, via a modal that uses google 0auth
+
+- **Trip Builder**
+Then there will be a trip screen where users can see the trip information:
+  - They can add activities, locations and restaurants they'd like to visit.
+  - There'll be a budget slider, and the ability to amend the dates too.
+  - Once they have all of this data and they're happy with the trip they can click 'Generate Itinerary) and I will use the OpenAI API to use a prompt to request it make a table itinerary based on the budget, location, dates, activities etc. and serve that back to me and I'll format it and share with the users.
+  - The user can export the itinerary
+   - The user can then amend or regenerate the itinerary until they’re happy.
+  - There will be an invite collaborators button and form
+
+- **Profile Page**
+The user will have a profile page where they can see all of their past Trips and click into the Trip Builder page for any of them.
+
+## ERD
 
 ![Itinera ERD Diagram](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/itinera-ERD.jpeg)
 
-- Talk about how I changed the ERD in the end and then add an updated version below:
-
-![Itinera ERD Diagram](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/itinera-ERD.jpeg)
 
 ## Wireframe
 
@@ -109,42 +139,29 @@ ERD:
 
 ## Inspiration
 
-Speak about Wanderlog and add screenshots
+While researching existing solution in the market I found the website, Wanderlog. It allows users to create and collaborate on trips with friends. I loved their clean design, and the'd recently implemented an AI chat function, but not a way to generate an itinerary.
 
-![Neon blue heads up display](https://github.com/SimpsonRoss/battleships/blob/main/resources/aesthetic-inspiration.png)
-![Computer screen from the Tron remake](https://github.com/SimpsonRoss/battleships/blob/main/resources/tron-inspiration.png)
+![Wanderlog home page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/wanderlog.png)
+
+![Wanderlog new trip page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/wanderlog2.png)
 
 ## MVP - Minimum Viable Product
 
-- [x] Add
-- [x] this
-- [x] in
-- [x] these
-- [x] bullet
-- [x] points
+- [x] A way to login so that I can track my trips
+- [x] A way to log all the activities and locations for a trip
+- [x] The ability to delete activities or locations in my trip
+- [x] A way to specify the start and end date of the trip
+- [x] A way to Specify a budget for the trip
+- [x] A place to track the trips I own and collaborate on.
 
 ## NTH - Nice to have
 
-- [x] Add
-- [x] this
-- [x] in
-- [x] these
-- [x] bullet
-- [x] points
+- [x] AI generates the itinerary for my trip.
+- [x] I can invite friends to collaborate on a trip.
+- [] The site features a map, showing my travel locations
+- [] The locations search autocompletes via Google Place API.
+- [] I get contextual suggestions for locations and activites.
 
-## Sprint Planning
-
-To keep my project on track I built a product backlog and worked through the cards all week. I approached the MVP items first and once they were completed I approached the nice to have items. I also met with tutors and conducted user research and took any user stories that popped up and added them in the backlog.
-
-![Gif of my Trello Sprint Board](https://github.com/SimpsonRoss/battleships/blob/main/resources/trello.png)
-
-## Timeline
-
-Show some different iterations of the product.
-
-![Graphic timeline of my battleships project](https://github.com/SimpsonRoss/battleships/blob/main/resources/timeline.png)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Biggest Challenge
 
@@ -166,13 +183,19 @@ If I was releasing this to the market this would be an area that I'd invest a lo
 - [] Add other authorisation methods
 - [] Add some keyword buttons a user can click to assist the AI with the trip's 'vibe'
 
+
 ## Next Steps
 
-- Speak about what's next for the product
+- Add Google's Places API to help autocomplete locations
+- Standardise CSS styling across the site
+- Add more safeguards to ensure that AI responses are consistent
+- Update the OpenAI API to stay current. Currently I'm using *text-davinci-003* but I'm hoping they release *text-davinci-004* and I can utilise ChatGPT-4's capabilities.
+
 
 ## Wins
 
--****
+- **Getting the API working**. This was only the second time I've worked with third party APIs, and at the start of the project it seemed like a pipe-dream to add OpenAI's functionality into my product, but I'm glad I got it working and got some experience working with something that's so popular right now. 
+- **Creating an app people want to use.** I wanted to make something that highlighted the topics I'm learning, and satisfies the project brief, but also something that I'd use and others want to use. From user feedback it seems that I achieved this, and that feel's awesome.
 
 ## Mistakes / Bugs
 
