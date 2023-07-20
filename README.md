@@ -285,13 +285,11 @@ Project Link: [https://github.com/SimpsonRoss/itinerary-app](https://github.com/
 
 These resources helped me greatly in the completion of my game, especially when it came to CSS styling and creating animated loops for my little alien mascot.
 
-- [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
-- [htmlcheatsheet.com](https://htmlcheatsheet.com/)
-- [Img Shields](https://shields.io)
+- [Bootstrap](https://getbootstrap.com/)
 - [Trello](https://trello.com/)
-- [GitHub Pages](https://pages.github.com)
 - [Photopea](https://www.photopea.com/)
 - [EZ gif](https://ezgif.com/)
-- [Animated Drawings](https://sketch.metademolab.com/canvas)
+- [Open AI API](https://openai.com/)
+- [Google 0Auth](https://cloud.google.com/endpoints/docs/openapi/authenticating-users-auth0)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
