@@ -1,4 +1,4 @@
-# Itinera
+# Itinera - your travel itinerary, in seconds.
 
 ![Itinera Logo](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/logoWText.png)
 
@@ -43,14 +43,9 @@ They can set their trip name, destination, dates and budget, and then collaborat
 
 ![Itinerary being generated](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/slow.gif)
 
-## Website
-
-![Desktop and Mobile experience](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/desk-mob.png)
-
 ### Built With
 
 For this project we were tasked to build a fullstack application using these tools:
-
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
@@ -62,13 +57,51 @@ For this project we were tasked to build a fullstack application using these too
 ![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+## Website
+
+<strong><p><a href="https://itinera-6ae652d21473.herokuapp.com/">Click to view the Itinera website</a></p></strong>
+
+![Desktop and Mobile experience](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/desk-mob.png)
 
 <!-- GETTING STARTED -->
 
 ## Usage
 
-- Bullet steps explaining how to use the app
+- Visit the <a href="https://itinera-6ae652d21473.herokuapp.com/">website</a>
+
+**Home Page**
+- Hit 'Sign up' in the nav bar
+- Use a Google account to easily sign up
+- Hit 'New Trip' in the nav bar OR 'Start Planning' from the banner
+
+**New Trip Page**
+- Create a name for your trip 
+  - (e.g. USA Roadtrip, Romantic Sorrento Weekend, Chilled Beach Vacation)
+- Add the location of your trip 
+  - (e.g. USA Roadtrip would be -> USA)
+- Add the start and end dates for your trip
+- Hit 'Start Planning'
+
+**Trip Planner Page**
+- Add the email of any fellow travel companions, who have an account on Itinera 
+  (for the sake of testing, you can use this email: *testitinera@gmail.com*)
+- Add any locations you'd like to visit during your trip
+(e.g. cities, towns, islands, restaurants, landmarks etc.)
+- Add any activities you'd like to do during your trip
+(e.g. hike in Yosemite, visit the Vienna Zoo, cycle down Miami South Beach)
+- Add your budget
+- Once you're happy with your trip, hit 'Generate itinerary' 
+- After a few moments you'll be served your day-by-day travel itinerary 
+
+**My Trips Page**
+- If you hit 'My Trips' in the nav bar you'll see a summary of all your trips
+- The trips feature there are the trips you own, plus friend's trips that you're a collaborator on too.
+- You can visit both.
+- Trips that have already happened will appear greyed out, to signify that they've passed.
+  
+![My Trips Page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/my-trips.png)
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -160,18 +193,18 @@ While researching existing solution in the market I found the website, Wanderlog
 
 - [x] AI generates the itinerary for my trip.
 - [x] I can invite friends to collaborate on a trip.
-- [] The site features a map, showing my travel locations
-- [] The locations search autocompletes via Google Place API.
-- [] I get contextual suggestions for locations and activites.
+- [ ] The site features a map, showing my travel locations
+- [ ] The locations search autocompletes via Google Place API.
+- [ ] I get contextual suggestions for locations and activites.
 
 
 ## Biggest Challenge
 
 The toughest part of this project for me was working with the OpenAI API for the first time, and learning how to use detailed prompts to get somewhat standard, parsable data back in return.
 
--**OpenAI is non-deterministic**, so when I asked it the same question over and over again I'd get a different result each time. Each time the formatting would be different and it wasn't conducive with creating a polished app.
--**Building strong prompts is key.** I had to learn how to build very clear prompts that left little room for error, and would almost always return an output in a format I could anticipate and parse for displaying in HTML. 
--**Adding template literals into prompts.** Once I had the output more consistent I began tweaking the input, swapping out constants for template literals and making the itineraries specific for the trip in question.
+- **OpenAI is non-deterministic**, so when I asked it the same question over and over again I'd get a different result each time. Each time the formatting would be different and it wasn't conducive with creating a polished app.
+- **Building strong prompts is key.** I had to learn how to build very clear prompts that left little room for error, and would almost always return an output in a format I could anticipate and parse for displaying in HTML. 
+- **Adding template literals into prompts.** Once I had the output more consistent I began tweaking the input, swapping out constants for template literals and making the itineraries specific for the trip in question.
 
 If I was releasing this to the market this would be an area that I'd invest a lot more time in, building more safeguards using regular expressions to ensure that the itinerary is correct before dislaying it to the user.
 
@@ -180,10 +213,10 @@ If I was releasing this to the market this would be an area that I'd invest a lo
 
 - [x] Make the trip name and location editable
 - [x] Add a section where you can see the trips you're collaborating on with friends
-- [] More clear messaging around the Trip planner CRUD UI, to assist the user journey
-- [] If a user tries to add a guest that isn't signed up, then we email them an invite link
-- [] Add other authorisation methods
-- [] Add some keyword buttons a user can click to assist the AI with the trip's 'vibe'
+- [ ] More clear messaging around the Trip planner CRUD UI, to assist the user journey
+- [ ] If a user tries to add a guest that isn't signed up, then we email them an invite link
+- [ ] Add other authorisation methods
+- [ ] Add some keyword buttons a user can click to assist the AI with the trip's 'vibe'
 
 
 ## Next Steps
@@ -204,7 +237,6 @@ If I was releasing this to the market this would be an area that I'd invest a lo
 - **Becoming beholden to bootstrap**. I got so tied into bootstrap early on, that when it came to implementing custom CSS it made it much harder. Overall though for time spent, bootstrap was brilliant.
 - **Messing up my routing in Heroku / Google 0Auth** I sank 6 hours into Heroku and Google 0Auth debugging only to realise I’d missed the /oauth2callback tail from my authorised redirect URI in Google Cloud.
 - **Discrepancies in UI styling across pages** I threw a lot of CRUD functionality at the trips show page, and consequently didn’t have enough time to fully style how I wanted it
-
 
 ## Key Learnings
 
