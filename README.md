@@ -9,11 +9,17 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
+    <li><a href="#about">About The Project</a>
+    <li><a href="#website">Visit the Itinera Site</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#planning">Planning</a></li>
+    <li><a href="#erd">ERD</a></li>
+    <li><a href="#wireframe">Wireframe</a></li>
+    <li><a href="#inspiration">Inspiration</a></li>
+    <li><a href="#mvp-minimum-viable-product">Minimum Viable Product</a></li>
+    <li><a href="#nth-nice-to-have">Nice to have</a></li>
+
+    
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -22,10 +28,8 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
@@ -43,7 +47,7 @@ They can set their trip name, destination, dates and budget, and then collaborat
 
 ![Itinerary being generated](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/slow.gif)
 
-### Built With
+**Built With**
 
 For this project we were tasked to build a fullstack application using these tools:
 
@@ -65,7 +69,7 @@ For this project we were tasked to build a fullstack application using these too
 
 <!-- GETTING STARTED -->
 
-## Usage
+## Getting Started
 
 - Visit the <a href="https://itinera-6ae652d21473.herokuapp.com/">website</a>
 
@@ -98,6 +102,8 @@ For this project we were tasked to build a fullstack application using these too
 - The trips feature there are the trips you own, plus friend's trips that you're a collaborator on too.
 - You can visit both.
 - Trips that have already happened will appear greyed out, to signify that they've passed.
+
+As you might not have many trips or collaborators around, please see a shot of the experience below:
   
 ![My Trips Page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/my-trips.png)
 
@@ -280,7 +286,7 @@ These resources helped me greatly in the completion of my game, especially when 
 - [CSS Tricks](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
 - [htmlcheatsheet.com](https://htmlcheatsheet.com/)
 - [Img Shields](https://shields.io)
-- [Trello] (https://trello.com/)
+- [Trello](https://trello.com/)
 - [GitHub Pages](https://pages.github.com)
 - [Photopea](https://www.photopea.com/)
 - [EZ gif](https://ezgif.com/)
