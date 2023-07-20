@@ -5,11 +5,12 @@
 - They enter their budget and the AI will generate a daily itinerary for them.
 -->
 
-
 <%- include('../partials/header') %>
 
-
 <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+
+<!-- TRIP HEADER -->
+
   <img src="<%= trip.userAvatar %>" alt="Avatar" width="55" height="55" class="d-inline-block align-text-top rounded-circle border border-success">
 
   <div class="col-md-8 col-lg-6 mx-auto mt-2 mb-4">
@@ -26,41 +27,37 @@
       </h5>
     </form>
 
-    
-    
     <div class="col-sm-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 my-3">
       <input type="text" id="daterange" class="date-picker form-control text-center" readonly value="<%= trip.startDate %> - <%= trip.endDate %>">
       <input type="hidden" id="tripId" value="<%= trip._id %>">
     </div>
+  
+<!-- ADDING COLLABORATORS -->
     
     <h2 class="display-7 font-weight-normal mb-2">Fellow travellers</h2>
 
     <% trip.collaborators.forEach(function(c) { %>
       <img src="<%= c.userAvatar %>" alt="Avatar" width="35" height="35" class="d-inline-block align-text-top rounded-circle">
     <% }); %>
-    
+
     <% if (user?._id.equals(trip.user._id)) { %>
       <form id="add-new-collaborator" action="/trips/<%= trip._id %>/collaborators" method="POST" autocomplete="off">
         <div class="form-group row p-2">
-    
           <div class="col-10 mt-2 my-md-2 my-lg-1">
             <input type="text" class="form-control" id="collaborator" name="email" placeholder="Add companion's email">
           </div>
           <div class="col-2 my-2 my-md-2 my-lg-1">
-            
             <button type="submit" class="btn btn-outline-custom float-end">Add</button>
           </div>
         </div>
       </form> 
     <% } %>
     
+ <!-- ADDING NEW LOCATIONS -->
 
     <h2 class="display-7 font-weight-normal mt-4">Places to visit</h2>
-
-    <!-- ADDING NEW LOCATIONS -->
     <form id="add-new-location" action="/trips/<%= trip._id %>/locations" method="POST" autocomplete="off">
       <div class="form-group row p-2">
-
         <div class="col-10 my-2 my-md-2 my-lg-1">
           <input type="text" class="form-control" id="location" name="location" placeholder="Add a location">
         </div>
@@ -75,11 +72,8 @@
     <% trip.locations.forEach(function(l) { %>
       
       <li class ="list-group-item list-group-item-action col-sm-12 col-md-10 col-lg-8 p-2 list-group-item-light mb-1">
-
         <img class="rounded-circle float-start img-fluid" alt="avatar" src="<%= l.userAvatar %>" style="height:3.2vmin" referrerpolicy="no-referrer" >
-        
         <strong><%= l.location %></strong>
-  
         <% if (user?._id.equals(l.user)) { %>
           <form 
             action="/locations/<%= l._id %>?_method=DELETE"
@@ -88,42 +82,32 @@
             <button type="submit" class="btn-close float-end" aria-label="Close"></button>
           </form>
         <% } %>
-       
       </li>
     <% }); %>
 
     <br>
 
-    <h2 class="display-7 font-weight-normal">Activities</h2>
     <!-- ADDING NEW ACTIVITIES -->
+
+    <h2 class="display-7 font-weight-normal">Activities</h2>
+    
     <form id="add-new-activity" action="/trips/<%= trip._id %>/activities" method="POST" autocomplete="off">
       <div class="form-group row p-2">
-
         <div class="col-10 my-2 my-md-2 my-lg-1">
           <input type="text" class="form-control" id="activity" name="activity" placeholder="Add an activity">
         </div>
         <div class="col-2 my-2 my-md-2 my-lg-1">
-          
           <button type="submit" class="btn btn-outline-custom float-end">Add</button>
         </div>
       </div>
     </form> 
+
     <!-- LISTING THE ACTIVITIES -->
     <% trip.activities.forEach(function(a) { %>
       
       <li class ="list-group-item list-group-item-action col-sm-12 col-md-10 col-lg-8 p-2 list-group-item-light mb-1">
-
         <img class="rounded-circle float-start img-fluid" alt="avatar" src="<%= a.userAvatar %>" style="height:3.2vmin" referrerpolicy="no-referrer" >
-
-        <!-- <div class="float-start"> 
-          &nbsp;
-          <% let nameArr = a.userName.split(' ') %>
-          <% let firstName = nameArr[0] %>
-          <%= nameArr[0] %>
-        </div> -->
-        
         <strong><%= a.activity %></strong>
-  
         <% if (user?._id.equals(a.user)) { %>
           <form 
           action="/activities/<%= a._id %>?_method=DELETE"
@@ -132,11 +116,11 @@
         <button type="submit" class="btn-close float-end" aria-label="Close"></button>
       </form>
         <% } %>
-       
       </li>
     <% }); %>
 
     <br>
+
     <!-- ADDING OR UPDATING BUDGET -->
     <h2 class="display-7 font-weight-normal">Budget</h2>
     
@@ -169,18 +153,18 @@
       </div>
       <h4 class="font-weight-normal"><%= trip.currency.split(' - ')[1] %><%= trip.budget %></h4>
     </form>
-    
-
   </div>
 
-  <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3">  
+  <!-- GENERATING AN ITINERARY -->
 
+  <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3">  
+    <!-- GENERATE BUTTON -->
     <form id="itinerary-form" action="/trips/<%= trip._id %>/itineraries" method="POST" autocomplete="off">
       <div class="form-group row p-2">
         <button type="submit" class="btn btn-outline-custom float-end">Generate itinerary</button>
       </div>
     </form> 
-
+    <!-- LOADING SPINNER -->
     <div class="d-flex justify-content-center align-items-center mt-3" style="height: 100%;">
       <div class="spinner-border" role="status" id="spinner" style="display: none;">
         <span class="sr-only"></span>
@@ -191,45 +175,31 @@
 
   <br>
 
+  <!-- CHECK ITINERARY ARRAY ISN'T EMPTY -->
   <% if (trip.itinerary && trip.itinerary.length > 1) { %>
     <h2 class="display-7 font-weight-normal">Your Itinerary</h2>
-    <!-- Your itinerary list here -->
   <% } %>
 
-<div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3">
-  <div class="form-group row p-2">
-
-    <!-- <p><%= trip.itinerary.at(-1).itinerary %></p> -->
-
-    <% let tripArr = trip.itinerary.at(-1).itinerary; %>
-    <% daysArr = tripArr.map(day => day.replace(/\n/g, '')); %>
-    
-    <% let data = daysArr[0].replace(/Day /g, 'SPLIT_HERE Day '); %>
-    <% let array = data.split('SPLIT_HERE '); %>
-    <% array.shift(); %>
-    
-    <% array.forEach(function(i) { %>
-      <% let day = i.split(':') %>
-
-      <h5><%= day[0].trim() %></h5>
-      <li class ="list-group-item col-12 list-group-item-light mb-3">
-      <%= day[1].trim() %>
-      </li>
-
-    <% }); %>
-  
+  <div class="col-sm-12 col-md-8 col-lg-6 offset-md-2 offset-lg-3 my-3">
+    <div class="form-group row p-2">
+      <!-- GRAB THE LAST ENTRY IN THE ITINERARIES ARRAY -->
+      <% let tripArr = trip.itinerary.at(-1).itinerary; %>
+      <!-- USE REGEX TO PARSE, THEN SPLIT -->
+      <% daysArr = tripArr.map(day => day.replace(/\n/g, '')); %>   
+      <% let data = daysArr[0].replace(/Day /g, 'SPLIT_HERE Day '); %>
+      <% let array = data.split('SPLIT_HERE '); %>
+      <% array.shift(); %>
+      <!-- LIST OUT EACH DAY -->
+      <% array.forEach(function(i) { %>
+        <% let day = i.split(':') %>
+        <h5><%= day[0].trim() %></h5>
+        <li class ="list-group-item col-12 list-group-item-light mb-3">
+        <%= day[1].trim() %>
+        </li>
+      <% }); %>
+    </div>
   </div>
-
-
-</div>
-
-
-<br>
-
-
-
-    <!-- ADDING COLLABORATORS -->
-
+  <br>
 </div>
 
 

@@ -20,13 +20,9 @@ router.put('/:id/destination', ensureLoggedIn, tripsCtrl.updateDestination);
 // PUT /trips/:id/name
 router.put('/:id/name', ensureLoggedIn, tripsCtrl.updateName);
 
-
 // PUT /trips/:id/budget
 router.put('/:id/budget', ensureLoggedIn, tripsCtrl.updateBudget);
 // DELETE /trips/:id
 router.delete('/:id', ensureLoggedIn, tripsCtrl.delete);
-
-
-
 
 module.exports = router;

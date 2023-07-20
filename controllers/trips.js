@@ -31,7 +31,7 @@ async function updateDate(req, res) {
   try {
     const trip = await Trip.findById(req.params.id);
     if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
-      // Append the 'T00:00' before assigning the values to the trip
+      
       req.body.startDate += 'T00:00';
       req.body.endDate += 'T00:00';
 
@@ -49,7 +49,6 @@ async function updateDate(req, res) {
     res.redirect('/trips');
   }
 }
-
 
 async function updateDestination(req, res) {
   try {
@@ -89,7 +88,7 @@ async function index(req, res) {
 
 async function show(req, res) {
   try {
-    //console.log(req.query);
+    
     console.log(req.query.email); //ACCESSING THE EMAIL ADDRESS OF AN INVALID FELLOW TRAVELLER
     const trip = await Trip.findById(req.params.id);
     if (trip.user.equals(req.user._id) || trip.collaborators.some(collaborator => collaborator.collaborator === req.user._id.toString())) {
@@ -104,12 +103,9 @@ async function show(req, res) {
   }
 }
 
-
-
 function newTrip(req, res) {
   res.render('trips/new', { title: 'New Trip', errorMsg: '' });
 }
-
 
 async function create(req, res) {
   for (let key in req.body) {

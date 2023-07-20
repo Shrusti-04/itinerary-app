@@ -8,7 +8,6 @@ module.exports = {
   delete: deleteItinerary,
 };
 
-
 async function deleteItinerary(req, res) {
   const trip = await Trip.findOne({ 'itineraries._id': req.params.id, 'itineraries.user': req.user._id }); //finds the trip by the activity id and the user id
 
@@ -33,7 +32,7 @@ async function fetchData(prompt) {
     }),
   })
   const data = await response.json()
-  //console.log(data);
+
   return data.choices[0].text;
 }
 
@@ -46,7 +45,6 @@ async function create(req, res) {
 
   req.body.itinerary = await fetchData(tripPrompt);  // await the result of fetchData()
 
-  //console.log(trip.itinerary);
   trip.itinerary.push(req.body); // Add AI output into the itinerary array
 
   try {

@@ -5,7 +5,6 @@ module.exports = {
   delete: deleteActivity,
 };
 
-
 async function deleteActivity(req, res) {
   const trip = await Trip.findOne({ 'activities._id': req.params.id, 'activities.user': req.user._id }); //finds the trip by the activity id and the user id
 

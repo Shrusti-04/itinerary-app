@@ -46,8 +46,7 @@
     </ul>
     <% } %>
 
-
-    <!-- Collaborative Trips Section -->
+<!-- Collaborative Trips Section -->
 <% if (collabTrips && collabTrips.length > 0) { %>
  
     <h2 class="display-5 font-weight-normal mt-3">Friend's Trips</h2>
@@ -70,7 +69,6 @@
               <div class="col-sm-5">
                 <%= t.startDate.toLocaleDateString() %> - <%= t.endDate.toLocaleDateString() %> 
               </div>
-
 
               <div class="col-sm-1 text-end">
                  <img src="<%= t.userAvatar %>" alt="Avatar" width="25" height="25" class="d-inline-block align-text-top rounded-circle border border-success">

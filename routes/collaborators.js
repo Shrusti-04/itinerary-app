@@ -9,5 +9,4 @@ router.post('/trips/:id/collaborators', ensureLoggedIn, collaboratorsCtrl.create
 // DELETE /activities/:id
 //router.delete('/activities/:id', ensureLoggedIn, activitiesCtrl.delete);
 
-
 module.exports = router;

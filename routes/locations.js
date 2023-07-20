@@ -9,5 +9,4 @@ router.post('/trips/:id/locations', ensureLoggedIn, locationsCtrl.create);
 // DELETE /locations/:id
 router.delete('/locations/:id', ensureLoggedIn, locationsCtrl.delete);
 
-
 module.exports = router;

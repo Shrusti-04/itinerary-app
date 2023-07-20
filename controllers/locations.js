@@ -5,7 +5,6 @@ module.exports = {
   delete: deleteLocation,
 };
 
-
 async function deleteLocation(req, res) {
   const trip = await Trip.findOne({ 'locations._id': req.params.id, 'locations.user': req.user._id }); //finds the trip by the location id and the user id
 
@@ -19,11 +18,9 @@ async function deleteLocation(req, res) {
 async function create(req, res) {
   const trip = await Trip.findById(req.params.id); //finds the trip by the id in the url
   
-
   req.body.user = req.user._id;
   req.body.userName = req.user.name;
   req.body.userAvatar = req.user.avatar; //adds the user's name and avatar to the req.body
-  //console.log("Request body:", req.body);
 
   trip.locations.push(req.body); //pushes the req.body into the locations array
 
