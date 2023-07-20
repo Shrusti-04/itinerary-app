@@ -16,22 +16,12 @@
     <li><a href="#erd">ERD</a></li>
     <li><a href="#wireframe">Wireframe</a></li>
     <li><a href="#inspiration">Inspiration</a></li>
-    <li><a href="#mvp-minimum-viable-product">Minimum Viable Product</a></li>
-    <li><a href="#nth-nice-to-have">Nice to have</a></li>
-
-    
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#biggest-challenge">Biggest Challenge</a></li>
+    <li><a href="#user-feedback">User Feedback</a></li>
+    <li><a href="#next-steps">Next Steps</a></li>
+    <li><a href="#wins">Wins</a></li>
+    <li><a href="#key-learnings">Key Learnings</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -66,6 +56,9 @@ For this project we were tasked to build a fullstack application using these too
 <strong><p><a href="https://itinera-6ae652d21473.herokuapp.com/">Click to view the Itinera website</a></p></strong>
 
 ![Desktop and Mobile experience](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/desk-mob.png)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- GETTING STARTED -->
 
@@ -106,7 +99,6 @@ For this project we were tasked to build a fullstack application using these too
 As you might not have many trips or collaborators around, please see a shot of the experience below:
   
 ![My Trips Page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/my-trips.png)
-
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -155,6 +147,9 @@ Then there will be a trip screen where users can see the trip information:
 - **Profile Page**
 The user will have a profile page where they can see all of their past Trips and click into the Trip Builder page for any of them.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 ## ERD
 
 ![Itinera ERD Diagram](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/itinera-ERD.jpeg)
@@ -177,6 +172,9 @@ The user will have a profile page where they can see all of their past Trips and
 **Trip Planner:**
 
 ![Trip Planner page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/trip-planner.png)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## Inspiration
 
@@ -215,6 +213,9 @@ The toughest part of this project for me was working with the OpenAI API for the
 If I was releasing this to the market this would be an area that I'd invest a lot more time in, building more safeguards using regular expressions to ensure that the itinerary is correct before dislaying it to the user.
 
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 ## User Feedback
 
 - [x] Make the trip name and location editable
@@ -244,6 +245,9 @@ If I was releasing this to the market this would be an area that I'd invest a lo
 - **Messing up my routing in Heroku / Google 0Auth** I sank 6 hours into Heroku and Google 0Auth debugging only to realise I’d missed the /oauth2callback tail from my authorised redirect URI in Google Cloud.
 - **Discrepancies in UI styling across pages** I threw a lot of CRUD functionality at the trips show page, and consequently didn’t have enough time to fully style how I wanted it
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 ## Key Learnings
 
 - **Open AI API isn't suitable for a Free model**, unless supported by adverts. I spent 3 dollars just testing it by myself, so if I had hundreds/thousands of users generating itineraries every day I'd be in financial ruin.
@@ -264,8 +268,6 @@ If you have a suggestion that would make this better, please fork the repo and c
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 
