@@ -7,7 +7,7 @@ const db = mongoose.connection;
 
 
 //Testing this for Heroku !!!!!!!
-const mongoURI = process.env.DATABASE_URL;
+//const mongoURI = process.env.DATABASE_URL;
 	
 db.on('connected', function() {
   console.log(`Connected to MongoDB ${db.name} at ${db.host}:${db.port}`);
