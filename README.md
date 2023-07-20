@@ -32,21 +32,32 @@
 
 ## About
 
-This application is.....
+Itinera is a travel itinerary generator that allows users to build their ideal vacation, and get an AI generated daily itinerary in seconds.
+
+They can set their trip name, destination, dates and budget, and then collaborate with friends to decide the locations and activites they want to hit. Once they're happy with their trip they hit 'Generate itinerary' and they're presented with a full day-by-day itinerary, using their input plus other attractions, restaurants, cultural landmarks, travel suggestions etc.
+
+Example:
+
+![Itinerary being generated](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/slow.gif)
 
 ## Website
 
-Add in screenshots of the Desktop and Mobile experience.
-
-![Battleships product image](https://github.com/SimpsonRoss/battleships/blob/main/resources/web-gameplay.gif)
+![Desktop and Mobile experience](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/desk-mob.png)
 
 ### Built With
 
-For this project we were tasked to choose and game and complete it using these tools:
+For this project we were tasked to build a fullstack application using these tools:
 
-- ![HTML5](https://img.shields.io/badge/-HTML5-05122A?style=flat&logo=html5)
-- ![CSS3](https://img.shields.io/badge/-CSS-05122A?style=flat&logo=css3)
-- ![JavaScript](https://img.shields.io/badge/-JavaScript-05122A?style=flat&logo=javascript)
+
+- ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+- ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+- ![Express](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
+- ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+- ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+- ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+- ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -72,17 +83,29 @@ Aim:
 
 ERD:
 
-![Battleships product image](https://github.com/SimpsonRoss/battleships/blob/main/resources/web-gameplay.gif)
+![Itinera ERD Diagram](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/itinera-ERD.jpeg)
 
 - Talk about how I changed the ERD in the end and then add an updated version below:
 
-![Battleships product image](https://github.com/SimpsonRoss/battleships/blob/main/resources/web-gameplay.gif)
+![Itinera ERD Diagram](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/itinera-ERD.jpeg)
 
 ## Wireframe
 
-Add the wireframe imagery
+**Home Page:**
 
-![Wireframe of my Battleships game](https://github.com/SimpsonRoss/battleships/blob/main/resources/wireframe.png)
+![Itinera Home Page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/home-page.png)
+
+**New Trip:**
+
+![New Trip page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/new-trip.png)
+
+**0Auth Modal:**
+
+![0Auth Modal](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/0Auth-modal.png)
+
+**Trip Planner:**
+
+![Trip Planner page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/trip-planner.png)
 
 ## Inspiration
 
@@ -125,16 +148,23 @@ Show some different iterations of the product.
 
 ## Biggest Challenge
 
-Speak about the implementation of the Open AI API and parsing the information that the API gave into something that I could deal to the user.
+The toughest part of this project for me was working with the OpenAI API for the first time, and learning how to use detailed prompts to get somewhat standard, parsable data back in return.
+
+-**OpenAI is non-deterministic**, so when I asked it the same question over and over again I'd get a different result each time. Each time the formatting would be different and it wasn't conducive with creating a polished app.
+-**Building strong prompts is key.** I had to learn how to build very clear prompts that left little room for error, and would almost always return an output in a format I could anticipate and parse for displaying in HTML. 
+-**Adding template literals into prompts.** Once I had the output more consistent I began tweaking the input, swapping out constants for template literals and making the itineraries specific for the trip in question.
+
+If I was releasing this to the market this would be an area that I'd invest a lot more time in, building more safeguards using regular expressions to ensure that the itinerary is correct before dislaying it to the user.
+
 
 ## User Feedback
 
-- [x] Add
-- [x] this
-- [x] in
-- [] these
-- [] bullet
-- [] points
+- [x] Make the trip name and location editable
+- [x] Add a section where you can see the trips you're collaborating on with friends
+- [] More clear messaging around the Trip planner CRUD UI, to assist the user journey
+- [] If a user tries to add a guest that isn't signed up, then we email them an invite link
+- [] Add other authorisation methods
+- [] Add some keyword buttons a user can click to assist the AI with the trip's 'vibe'
 
 ## Next Steps
 
@@ -142,15 +172,21 @@ Speak about the implementation of the Open AI API and parsing the information th
 
 ## Wins
 
-- Wins
+-****
 
 ## Mistakes / Bugs
 
-- Bugs and mistakes
+- **Becoming beholden to bootstrap**. I got so tied into bootstrap early on, that when it came to implementing custom CSS it made it much harder. Overall though for time spent, bootstrap was brilliant.
+- **Messing up my routing in Heroku / Google 0Auth** I sank 6 hours into Heroku and Google 0Auth debugging only to realise I’d missed the /oauth2callback tail from my authorised redirect URI in Google Cloud.
+- **Discrepancies in UI styling across pages** I threw a lot of CRUD functionality at the trips show page, and consequently didn’t have enough time to fully style how I wanted it
+
 
 ## Key Learnings
 
-- Learning
+- **Open AI API isn't suitable for a Free model**, unless supported by adverts. I spent 3 dollars just testing it by myself, so if I had hundreds/thousands of users generating itineraries every day I'd be in financial ruin.
+- **Stick to the MVC pattern**, at one point I was stuck and decided to us a main.js file to add some code and get things working quickly, but later on it became apparent I'd need to instead include it in my controllers and it took me hours to break it down into MVC pattern. In hindsight I should stuck to the pattern.
+- **Debug the basics before getting in the weeds**, I had an issue with getting Google 0Auth to work when deployed to Heroku. I spent 5-6 hours debugging it, reading documentation and logs. Only to find out it a redirect URL I'd formatted incorrectly in my Client ID, that took 5 seconds to alter.
+- **Don’t skimp on wireframing**, I managed to include some nice-to-have features in my site, but at the time of wireframing I thought I was being overly optimistic including them. As a consequence my UI on the Trip planner page suffered and became a bit of a Frankenstein's monster.
 
 <!-- CONTRIBUTING -->
 
