@@ -13,9 +13,7 @@ passport.use(new GoogleStrategy(
   // Marking a function as an async function allows us
   // to consume promises using the await keyword
   async function(accessToken, refreshToken, profile, cb) {
-    console.log('=======================================')
-    console.log(profile)
-    console.log('=======================================')
+
     // When using async/await  we use a
     // try/catch block to handle an error
     try {
