@@ -2,7 +2,6 @@
 
 ![Itinera Logo](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/logoWText.png)
 
-
 <a name="readme-top"></a>
 
 <!-- TABLE OF CONTENTS -->
@@ -31,7 +30,7 @@
 
 Itinera is a travel itinerary generator that allows users to build their ideal vacation, and get an AI generated daily itinerary in seconds.
 
-They can set their trip name, destination, dates and budget, and then collaborate with friends to decide the locations and activites they want to hit. Once they're happy with their trip they hit 'Generate itinerary' and they're presented with a full day-by-day itinerary, using their input plus other attractions, restaurants, cultural landmarks, travel suggestions etc.
+They can set their trip name, destination, dates and budget, and then collaborate with friends to decide the locations and activities they want to hit. Once they're happy with their trip they hit 'Generate itinerary' and they're presented with a full day-by-day itinerary, using their input plus other attractions, restaurants, cultural landmarks, travel suggestions etc.
 
 **Example:**
 
@@ -39,7 +38,7 @@ They can set their trip name, destination, dates and budget, and then collaborat
 
 **Built With**
 
-For this project we were tasked to build a fullstack application using these tools:
+For this project I was tasked to build a fullstack application using these tools:
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
@@ -50,7 +49,6 @@ For this project we were tasked to build a fullstack application using these too
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)
 
-
 ## Website
 
 <strong><p><a href="https://itinera-6ae652d21473.herokuapp.com/">Click to view the Itinera website</a></p></strong>
@@ -59,7 +57,6 @@ For this project we were tasked to build a fullstack application using these too
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- GETTING STARTED -->
 
 ## Getting Started
@@ -67,39 +64,42 @@ For this project we were tasked to build a fullstack application using these too
 - Visit the <a href="https://itinera-6ae652d21473.herokuapp.com/">website</a>
 
 **Home Page**
+
 - Hit 'Sign up' in the nav bar
 - Use a Google account to easily sign up
 - Hit 'New Trip' in the nav bar OR 'Start Planning' from the banner
 
 **New Trip Page**
-- Create a name for your trip 
+
+- Create a name for your trip
   - (e.g. USA Roadtrip, Romantic Sorrento Weekend, Chilled Beach Vacation)
-- Add the location of your trip 
+- Add the location of your trip
   - (e.g. USA Roadtrip would be -> USA)
 - Add the start and end dates for your trip
 - Hit 'Start Planning'
 
 **Trip Planner Page**
-- Add the email of any fellow travel companions, who have an account on Itinera 
+
+- Add the email of any fellow travel companions, who have an account on Itinera
   (for the sake of testing, you can use this email: *testitinera@gmail.com*)
 - Add any locations you'd like to visit during your trip
-(e.g. cities, towns, islands, restaurants, landmarks etc.)
+  (e.g. cities, towns, islands, restaurants, landmarks etc.)
 - Add any activities you'd like to do during your trip
-(e.g. hike in Yosemite, visit the Vienna Zoo, cycle down Miami South Beach)
+  (e.g. hike in Yosemite, visit the Vienna Zoo, cycle down Miami South Beach)
 - Add your budget
-- Once you're happy with your trip, hit 'Generate itinerary' 
-- After a few moments you'll be served your day-by-day travel itinerary 
+- Once you're happy with your trip, hit 'Generate itinerary'
+- After a few moments you'll be served your day-by-day travel itinerary
 
 **My Trips Page**
+
 - If you hit 'My Trips' in the nav bar you'll see a summary of all your trips
 - The trips feature there are the trips you own, plus friend's trips that you're a collaborator on too.
 - You can visit both.
 - Trips that have already happened will appear greyed out, to signify that they've passed.
 
 As you might not have many trips or collaborators around, please see a shot of the experience below:
-  
-![My Trips Page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/my-trips.png)
 
+![My Trips Page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/my-trips.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -125,7 +125,7 @@ To build a fullstack web application using JS, Express, Node, MongoDB and Mongoo
 Users can read about what the app does and there’s a button to ‘Plan Trip’.
 
 - **Trip Creator**
-Users can create a new trip by adding to a form:
+  Users can create a new trip by adding to a form:
 
   - A location
   - A start and end date
@@ -133,27 +133,26 @@ Users can create a new trip by adding to a form:
   - When they hit the ‘Create Trip’ button they are prompted to sign in.
 
 - **Oauth/Login Modal**
-If a logged out user hits create trip they’re prompted to sign/up or login, via a modal that uses google 0auth
+  If a logged out user hits create trip they’re prompted to sign/up or login, via a modal that uses google 0auth
 
 - **Trip Builder**
-Then there will be a trip screen where users can see the trip information:
+  Then there will be a trip screen where users can see the trip information:
+
   - They can add activities, locations and restaurants they'd like to visit.
   - There'll be a budget slider, and the ability to amend the dates too.
   - Once they have all of this data and they're happy with the trip they can click 'Generate Itinerary) and I will use the OpenAI API to use a prompt to request it make a table itinerary based on the budget, location, dates, activities etc. and serve that back to me and I'll format it and share with the users.
   - The user can export the itinerary
-   - The user can then amend or regenerate the itinerary until they’re happy.
+  - The user can then amend or regenerate the itinerary until they’re happy.
   - There will be an invite collaborators button and form
 
 - **Profile Page**
-The user will have a profile page where they can see all of their past Trips and click into the Trip Builder page for any of them.
+  The user will have a profile page where they can see all of their past Trips and click into the Trip Builder page for any of them.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## ERD
 
 ![Itinera ERD Diagram](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/itinera-ERD.jpeg)
-
 
 ## Wireframe
 
@@ -174,7 +173,6 @@ The user will have a profile page where they can see all of their past Trips and
 ![Trip Planner page](https://github.com/SimpsonRoss/itinerary-app/blob/main/public/images/trip-planner.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## Inspiration
 
@@ -201,20 +199,17 @@ While researching existing solution in the market I found the website, Wanderlog
 - [ ] The locations search autocompletes via Google Place API.
 - [ ] I get contextual suggestions for locations and activites.
 
-
 ## Biggest Challenge
 
 The toughest part of this project for me was working with the OpenAI API for the first time, and learning how to use detailed prompts to get somewhat standard, parsable data back in return.
 
 - **OpenAI is non-deterministic**, so when I asked it the same question over and over again I'd get a different result each time. Each time the formatting would be different and it wasn't conducive with creating a polished app.
-- **Building strong prompts is key.** I had to learn how to build very clear prompts that left little room for error, and would almost always return an output in a format I could anticipate and parse for displaying in HTML. 
+- **Building strong prompts is key.** I had to learn how to build very clear prompts that left little room for error, and would almost always return an output in a format I could anticipate and parse for displaying in HTML.
 - **Adding template literals into prompts.** Once I had the output more consistent I began tweaking the input, swapping out constants for template literals and making the itineraries specific for the trip in question.
 
 If I was releasing this to the market this would be an area that I'd invest a lot more time in, building more safeguards using regular expressions to ensure that the itinerary is correct before dislaying it to the user.
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## User Feedback
 
@@ -225,18 +220,16 @@ If I was releasing this to the market this would be an area that I'd invest a lo
 - [ ] Add other authorisation methods
 - [ ] Add some keyword buttons a user can click to assist the AI with the trip's 'vibe'
 
-
 ## Next Steps
 
 - Add Google's Places API to help autocomplete locations
 - Standardise CSS styling across the site
 - Add more safeguards to ensure that AI responses are consistent
-- Update the OpenAI API to stay current. Currently I'm using *text-davinci-003* but I'm hoping they release *text-davinci-004* and I can utilise ChatGPT-4's capabilities.
-
+- Update the OpenAI API to stay current. Currently I'm using _text-davinci-003_ but I'm hoping they release _text-davinci-004_ and I can utilise ChatGPT-4's capabilities.
 
 ## Wins
 
-- **Getting the API working**. This was only the second time I've worked with third party APIs, and at the start of the project it seemed like a pipe-dream to add OpenAI's functionality into my product, but I'm glad I got it working and got some experience working with something that's so popular right now. 
+- **Getting the API working**. This was only the second time I've worked with third party APIs, and at the start of the project it seemed like a pipe-dream to add OpenAI's functionality into my product, but I'm glad I got it working and got some experience working with something that's so popular right now.
 - **Creating an app people want to use.** I wanted to make something that highlighted the topics I'm learning, and satisfies the project brief, but also something that I'd use and others want to use. From user feedback it seems that I achieved this, and that feel's awesome.
 
 ## Mistakes / Bugs
@@ -246,7 +239,6 @@ If I was releasing this to the market this would be an area that I'd invest a lo
 - **Discrepancies in UI styling across pages** I threw a lot of CRUD functionality at the trips show page, and consequently didn’t have enough time to fully style how I wanted it
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## Key Learnings
 
@@ -274,8 +266,6 @@ If you have a suggestion that would make this better, please fork the repo and c
 ## Contact
 
 Ross Simpson - [My LinkedIn](https://www.linkedin.com/in/simpsonre/) - thisisrosssimpson@gmail.com
-
-Project Link: [https://github.com/SimpsonRoss/itinerary-app](https://github.com/SimpsonRoss/itinerary-app)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
