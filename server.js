@@ -1,77 +1,88 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var session = require('express-session');
-var passport = require('passport');
-var methodOverride = require('method-override');
+const express = require("express");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const path = require("path");
+require("dotenv").config();
+const config = require("./config");
 
-require('dotenv').config();
-// connect to the database with AFTER the config vars are processed
-require('./config/database');
-require('./config/passport');
+const app = express();
 
+// Serve uploaded files from local directory
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname, process.env.UPLOAD_DIR || "uploads"))
+);
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var tripsRouter = require('./routes/trips');
-var activitiesRouter = require('./routes/activities');
-var locationsRouter = require('./routes/locations');
-var itinerariesRouter = require('./routes/itineraries');
-var collaboratorsRouter = require('./routes/collaborators');
+// Serve static files in production
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client", "build")));
 
-var app = express();
+  // Handle React routing
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+  });
+}
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// MongoDB Connection with retry logic for Glitch
+const connectWithRetry = async () => {
+  try {
+    await mongoose.connect(config.mongoUri);
+    console.log("Connected to MongoDB");
+  } catch (err) {
+    console.error("MongoDB connection error:", err);
+    console.log("Retrying in 5 seconds...");
+    setTimeout(connectWithRetry, 5000);
+  }
+};
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static('public'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(methodOverride('_method'));
+connectWithRetry();
 
-app.use(session({
-  secret: process.env.SECRET,
-  resave: false,
-  saveUninitialized: true
-}));
+// Security and Middleware
+app.use(cors(config.cors));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-
-// Add this middleware BELOW passport middleware
-app.use(function (req, res, next) {
-  res.locals.user = req.user;
+// Security headers
+app.use((req, res, next) => {
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("X-XSS-Protection", "1; mode=block");
   next();
 });
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/trips', tripsRouter);
-app.use('/', activitiesRouter);
-app.use('/', locationsRouter);
-app.use('/', itinerariesRouter);
-app.use('/', collaboratorsRouter);
+// Routes
+const tripRoutes = require("./routes/trips");
+const weatherRoutes = require("./routes/weather");
+const packingRoutes = require("./routes/packing");
+const shareRoutes = require("./routes/share");
+const mediaRoutes = require("./routes/media");
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+// Request logging
+const {
+  requestLogger,
+  errorHandler,
+  notFound,
+} = require("./middleware/error-handlers");
+const logger = require("./utils/logger");
+
+app.use(requestLogger);
+
+// API Routes
+app.use("/api/trips", tripRoutes);
+app.use("/api/weather", weatherRoutes);
+app.use("/api/packing", packingRoutes);
+app.use("/api/share", shareRoutes);
+app.use("/api/media", mediaRoutes);
+
+// Handle 404s
+app.use(notFound);
+
+// Error handling
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
-
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-module.exports = app;

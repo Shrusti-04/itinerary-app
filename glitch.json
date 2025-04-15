@@ -1,0 +1,20 @@
+{
+  "install": "npm install",
+  "start": "npm start",
+  "watch": {
+    "install": {
+      "include": [
+        "^package\\.json$",
+        "^\\.env$"
+      ]
+    },
+    "restart": {
+      "include": [
+        "^server\\.js$",
+        "^routes/.*\\.js$",
+        "^models/.*\\.js$",
+        "^utils/.*\\.js$"
+      ]
+    }
+  }
+}

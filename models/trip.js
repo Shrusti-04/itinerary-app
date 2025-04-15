@@ -1,86 +1,35 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose");
 
-const itinerarySchema = new Schema({
-  itinerary: {
-    type: Array,
-  }
+const itineraryItemSchema = new mongoose.Schema({
+  time: String,
+  description: String,
+  date: Date,
 });
 
-const collaboratorSchema = new Schema({
-  collaborator: String,
-  userName: String,
-  userAvatar: String,
+const packingItemSchema = new mongoose.Schema({
+  text: String,
+  checked: Boolean,
 });
 
-const locationSchema = new Schema({
+const tripSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  startDate: { type: Date, required: true },
+  endDate: { type: Date, required: true },
+  description: String,
   location: String,
-  date: Date, //optional
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
+  coverImage: {
+    fileName: String,
+    url: String,
   },
-  userName: String,
-  userAvatar: String,
+  images: [
+    {
+      fileName: String,
+      url: String,
+    },
+  ],
+  itinerary: [itineraryItemSchema],
+  packingList: [packingItemSchema],
+  createdAt: { type: Date, default: Date.now },
 });
 
-const activitySchema = new Schema({
-  activity: String,
-  location: String, //optional`
-  date: Date, //optional
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  userName: String,
-  userAvatar: String,
-});
-
-const tripSchema = new Schema({
-  name: { 
-    type: String,
-    required: true,
-  },
-  destination: { 
-    type: String,
-    required: true,
-  },
-  startDate: { 
-    type: Date,
-    required: true,
-  },
-  endDate:{ 
-    type: Date,
-    required: true,
-  },
-  duration: Number,
-  budget: {
-    type: Number,
-    default: 0,
-  },
-  currency: { 
-    type: String,
-    default: 'USD - $',
-  },
-  activities: [activitySchema],
-  locations: [locationSchema],
-  itinerary: {
-    type: [itinerarySchema],
-    default: [{
-      itinerary: 'You have no itinerary yet.',
-    }]
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref : 'User',
-    required: true,
-  },
-  collaborators: [collaboratorSchema],
-  userAvatar: String,
-}, {
-    timestamps: true
-  });
-
-  module.exports = mongoose.model('Trip', tripSchema);
+module.exports = mongoose.model("Trip", tripSchema);
